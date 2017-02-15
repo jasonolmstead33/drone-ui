@@ -81,7 +81,7 @@ func distIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/index.html", size: 808, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
+	info := bindataFileInfo{name: "dist/index.html", size: 808, mode: os.FileMode(420), modTime: time.Unix(1487194187, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -99,7 +99,7 @@ func distStaticAppCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/app.css", size: 158511, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
+	info := bindataFileInfo{name: "dist/static/app.css", size: 158511, mode: os.FileMode(420), modTime: time.Unix(1487194187, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1861,7 +1861,7 @@ var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n]
 r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(9),l=n(17),c=n(1),p=r(c),f=n(161),d=r(f),h=n(20),m=function(e){function t(e){o(this,t)
 var n=a(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))
 return n.onFilter=n.onFilter.bind(n),n}return i(t,e),u(t,[{key:"render",value:function(){var e=this.props,t=e.feed,n=e.user,r=e.state
-return t=t.slice().sort(function(e,t){return(t.started_at||t.created_at||-1)-(e.started_at||e.created_at||-1)}),n?0==t.length?p.default.createElement("div",null,"Loading..."):(r.filter&&(t=t.filter(function(e){return e.full_name.toLowerCase().indexOf(r.filter)>-1})),p.default.createElement("div",{className:"repository-sidebar"},p.default.createElement("div",{className:"repository-search"},p.default.createElement("input",{type:"search",placeholder:"Filter...",onChange:this.onFilter,spellCheck:"off"})),p.default.createElement("div",null,t.map(function(e){return p.default.createElement(l.Link,{key:e.full_name,to:"/"+e.owner+"/"+e.name},p.default.createElement(d.default,{repo:e}))})))):p.default.createElement("div",{className:"repository-sidebar"},p.default.createElement("div",{className:"alert"},p.default.createElement("a",{href:"/login"},"Login")," to view your repository list."))}},{key:"componentDidMount",value:function(){h.events.emit(h.GET_FEED),h.events.emit(h.STREAM_FEED)}},{key:"componentWillUnmount",value:function(){h.events.emit(h.FILTER_CLEAR)}},{key:"onFilter",value:function(e){h.events.emit(h.FILTER,e.target.value)}}]),t}(p.default.Component)
+return t=t.slice().sort(function(e,t){return(t.started_at||t.created_at||-1)-(e.started_at||e.created_at||-1)}),n?0==t.length?p.default.createElement("div",null,"Loading..."):(r.filter&&(t=t.filter(function(e){return e.full_name.toLowerCase().indexOf(r.filter)>-1})),p.default.createElement("div",{className:"repository-sidebar"},p.default.createElement("div",{className:"repository-search"},p.default.createElement("input",{type:"search",placeholder:"Filter...",onChange:this.onFilter,spellCheck:"off"})),p.default.createElement("div",null,t.map(function(e){return p.default.createElement(l.Link,{key:e.full_name,to:"/"+e.owner+"/"+e.name},p.default.createElement(d.default,{repo:e}))})))):p.default.createElement("div",{className:"repository-sidebar"},p.default.createElement("div",{className:"alert"},p.default.createElement("a",{href:"/login"},"Login")," to view your repository list, jason."))}},{key:"componentDidMount",value:function(){h.events.emit(h.GET_FEED),h.events.emit(h.STREAM_FEED)}},{key:"componentWillUnmount",value:function(){h.events.emit(h.FILTER_CLEAR)}},{key:"onFilter",value:function(e){h.events.emit(h.FILTER,e.target.value)}}]),t}(p.default.Component)
 t.default=(0,s.branch)({feed:["feed"],user:["user"],state:["pages","repo"]},m)},function(e,t,n){"use strict"
 function r(e){return e&&e.__esModule?e:{default:e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
 return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t)
@@ -3566,7 +3566,7 @@ func distStaticAppJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/app.js", size: 485871, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
+	info := bindataFileInfo{name: "dist/static/app.js", size: 485878, mode: os.FileMode(420), modTime: time.Unix(1487194187, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -3676,7 +3676,7 @@ func distStaticDroneSvg() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/drone.svg", size: 3499, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
+	info := bindataFileInfo{name: "dist/static/drone.svg", size: 3499, mode: os.FileMode(420), modTime: time.Unix(1487194187, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -3693,7 +3693,7 @@ func distStaticFaviconIco() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/favicon.ico", size: 1150, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
+	info := bindataFileInfo{name: "dist/static/favicon.ico", size: 1150, mode: os.FileMode(420), modTime: time.Unix(1487194187, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
