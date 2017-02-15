@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
       return (
         <div className="repository-sidebar">
           <div className="alert">
-            <a href="/login">Login</a> to view your repository list, jason.
+            <a href="/login">Login</a> to view your repository list.
           </div>
         </div>
       );
