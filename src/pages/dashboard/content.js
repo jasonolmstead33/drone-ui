@@ -19,7 +19,7 @@ class Content extends React.Component {
 
     return (
       <PageContent fluid className="dashboard">
-        <div className="alert">Welcome to Drone.</div>
+        <div className="alert">Welcome to Drone, Asshole.</div>
       </PageContent>
     );
   }

@@ -81,7 +81,7 @@ func distIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/index.html", size: 808, mode: os.FileMode(420), modTime: time.Unix(1487184505, 0)}
+	info := bindataFileInfo{name: "dist/index.html", size: 808, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -99,7 +99,7 @@ func distStaticAppCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/app.css", size: 158511, mode: os.FileMode(420), modTime: time.Unix(1487184505, 0)}
+	info := bindataFileInfo{name: "dist/static/app.css", size: 158511, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1819,7 +1819,7 @@ var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n]
 r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(9),l=n(24),c=r(l),p=n(1),f=r(p)
 n(211)
 var d=function(e){function t(){return o(this,t),a(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return i(t,e),u(t,[{key:"render",value:function(){var e=this.props.user
-return e&&e.login?f.default.createElement(c.default,{fluid:!0,className:"dashboard"},f.default.createElement("div",{className:"alert"},"Welcome to Drone.")):f.default.createElement(c.default,{fluid:!0,className:"dashboard"},f.default.createElement("div",{className:"alert"},"Welcome to Drone, Jason. Please ",f.default.createElement("a",{href:"/login"},"login")," to proceed."))}}]),t}(f.default.Component)
+return e&&e.login?f.default.createElement(c.default,{fluid:!0,className:"dashboard"},f.default.createElement("div",{className:"alert"},"Welcome to Drone, Asshole.")):f.default.createElement(c.default,{fluid:!0,className:"dashboard"},f.default.createElement("div",{className:"alert"},"Welcome to Drone, Jason. Please ",f.default.createElement("a",{href:"/login"},"login")," to proceed."))}}]),t}(f.default.Component)
 t.default=(0,s.branch)({user:["user"]},d)},function(e,t,n){"use strict"
 function r(e){return e&&e.__esModule?e:{default:e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
 return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t)
@@ -3566,7 +3566,7 @@ func distStaticAppJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/app.js", size: 485862, mode: os.FileMode(420), modTime: time.Unix(1487184505, 0)}
+	info := bindataFileInfo{name: "dist/static/app.js", size: 485871, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -3676,7 +3676,7 @@ func distStaticDroneSvg() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/drone.svg", size: 3499, mode: os.FileMode(420), modTime: time.Unix(1487184505, 0)}
+	info := bindataFileInfo{name: "dist/static/drone.svg", size: 3499, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -3693,7 +3693,7 @@ func distStaticFaviconIco() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "dist/static/favicon.ico", size: 1150, mode: os.FileMode(420), modTime: time.Unix(1487184505, 0)}
+	info := bindataFileInfo{name: "dist/static/favicon.ico", size: 1150, mode: os.FileMode(420), modTime: time.Unix(1487193873, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
