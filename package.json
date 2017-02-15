@@ -45,11 +45,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drone/drone-ui.git"
+    "url": "git+https://github.com/jasonolmstead33/drone-ui.git"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/drone/drone-ui/issues"
+    "url": "https://github.com/jasonolmstead33/drone-ui/issues"
   },
-  "homepage": "https://github.com/drone/drone-ui#readme"
+  "homepage": "https://github.com/jasonolmstead33/drone-ui#readme"
 }
