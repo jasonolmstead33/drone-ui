@@ -1,0 +1,280 @@
+@import "../../variables";
+
+.repos {
+
+  position: relative;
+  margin: 0px 20px;
+
+  a{
+    color: @white;
+  }
+
+  & > li {
+
+    transition: transform ease 1.2s, background-color ease .3s;
+    margin: 10px;
+    opacity: 1;
+    width: 100%;
+    overflow: hidden;
+    background-color: @white;
+    border-radius: 4px;
+    box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, .4);
+    color: @shadeDark;
+
+    &.leave {
+      transition: transform ease 1.2s, opacity ease .5s;
+      opacity: 0;
+    }
+    &.pending,
+    &.running {
+      background-color: @running;
+      color: @white;
+    }
+    &.success {
+      background-color: @success;
+      color: @white;
+    }
+    &.error,
+    &.killed,
+    &.failure {
+      background-color: @failure;
+      color: @white;
+    }
+
+    .author {
+
+      position: relative;
+      float: left;
+      width: 105px;
+      height: 110px;
+      padding: 10px 0px 10px 15px;
+
+      img {
+        transition: all ease 1s;
+        position: relative;
+        z-index: 6;
+        width: 90px;
+        height: 90px;
+        border-radius: 90px;
+        background-color: @shade;
+        box-shadow: -2px 2px 4px rgba(0, 0, 0, .3);
+      }
+
+      .no-author {
+        position: relative;
+        z-index: 6;
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+        border-radius: 90px;
+        background-color: @shade;
+        text-align: center;
+        line-height: 90px;
+        font-size: 50px;
+        color: @shadeDark;
+      }
+
+      .fa-circle-o-notch {
+        top: 5px;
+        left: 10px;
+        width: 100px;
+        height: 100px;
+        line-height: normal;
+        font-size: 100px;
+        color: @spinner;
+      }
+
+    }
+    &.running > .author {
+      img {
+        transform: scale(.9, .9);
+        box-shadow: none;
+      }
+      & > .no-author {
+        transform: scale(.9, .9);
+      }
+    }
+
+    .repo-name {
+      padding-right: 40px;
+      padding-left: 15px;
+      overflow: hidden;
+      line-height: 110px;
+      font-size: 58px;
+      font-weight: bold;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: @white;
+    }
+    &.pending .repo-name,
+    &.running .repo-name,
+    &.success .repo-name,
+    &.error .repo-name,
+    &.killed .repo-name,
+    &.failure .repo-name {
+      text-shadow: -2px 2px 4px rgba(0, 0, 0, .4);
+    }
+
+    .pull-requests {
+
+      float: right;
+      margin-right: -32px;
+      font-size: 0;
+
+      & > li {
+
+        transition: background-color ease .3s;
+        position: relative;
+        z-index: 10;
+        display: inline-block;
+        width: 127px;
+        height: 110px;
+        background-color: @white;
+
+        &.ng-enter {
+          transition: width ease .5s;
+          width: 0px;
+        }
+        &.ng-enter-active {
+          width: 127px;
+        }
+        &.ng-leave {
+          transition: width ease .5s;
+          width: 127px;
+        }
+        &.ng-leave-active {
+          width: 0px;
+        }
+        &:before {
+          content: "";
+          transition: background-color ease .3s;
+          position: absolute;
+          z-index: 9;
+          top: -10px;
+          left: -30px;
+          width: 130px;
+          height: 130px;
+          background-color: @shade;
+          border-radius: 120px;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .6)
+        }
+        .pull-author {
+          transition: background-color ease .3s;
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          left: -10px;
+          width: 130px;
+          height: 110px;
+          padding: 10px 20px 10px 0px;
+          background-color: @shade;
+          border-radius: 120px 0 0 120px;
+        }
+
+        &.running .pull-author {
+          img,
+          .no-author {
+            transform: scale(.9, .9);
+          }
+        }
+
+        &.pending,
+        &.pending:before,
+        &.pending .pull-author {
+          background-color: @running;
+        }
+        &.running,
+        &.running:before,
+        &.running .pull-author {
+          background-color: @running;
+        }
+        &.success,
+        &.success:before,
+        &.success .pull-author {
+          background-color: @success;
+        }
+        &.error,
+        &.error:before,
+        &.error .pull-author,
+        &.killed,
+        &.killed:before,
+        &.killed .pull-author,
+        &.failure,
+        &.failure:before,
+        &.failure .pull-author {
+          background-color: @failure;
+        }
+
+        &.more {
+
+          &::before {
+            background-color: @overflow;
+          }
+
+          .pull-author {
+
+            background-color: @overflow;
+
+            .no-author {
+
+              font-size: 40px;
+              font-weight: 700;
+
+              i {
+                position: relative;
+                top: -4px;
+                font-size: 25px;
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+    .pull-author {
+
+      img {
+        transition: all ease 1s;
+        position: relative;
+        z-index: 6;
+        width: 90px;
+        height: 90px;
+        background-color: @shade;
+        border-radius: 90px;
+      }
+
+      .no-author {
+        transition: all ease 1s;
+        position: relative;
+        z-index: 6;
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+        border-radius: 90px;
+        background-color: @shade;
+        text-align: center;
+        line-height: 90px;
+        font-size: 50px;
+        color: @shadeDark;
+      }
+
+      .fa-circle-o-notch {
+        top: 5px;
+        left: -5px;
+        width: 100px;
+        height: 100px;
+        line-height: normal;
+        font-size: 100px;
+        color: @spinner;
+      }
+
+    }
+
+  }
+
+}

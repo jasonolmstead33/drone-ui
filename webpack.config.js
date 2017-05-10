@@ -26,6 +26,10 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
         }
+      },{
+        test: /\.css$/,
+        include: /node_modules/,
+        loader:  'style!css'
       },
       {
         test: /\.less$/,
@@ -48,7 +52,10 @@ module.exports = {
     // 'superagent': 'superagent'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx','.css'],
+    alias: {
+      react_vis_css: path.join(__dirname, 'node_modules/react_vis/main.css')
+    }
   },
   plugins: [
     new ExtractTextPlugin('static/app.css'),

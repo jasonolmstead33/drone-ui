@@ -1,0 +1,193 @@
+@import "../../variables";
+
+.latest-builds {
+
+  .no-builds {
+    display: block;
+    text-align: center;
+    line-height: 100px;
+    font-size: 31px;
+    font-weight: 300;
+  }
+  ol{
+    padding-left:0px;
+  }
+  ol li {
+
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transition: background-color ease .3s;
+    opacity: 1;
+    height: 94px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    background-color: @white;
+    border-radius: 4px;
+    box-shadow: -1px 1px 3px rgba(0, 0, 0, .3);
+    color: @shadeDark;
+
+    &.pending,
+    &.running {
+      background-color: @running;
+      color: @white;
+    }
+    &.success {
+      color: @success;
+    }
+    &.error,
+    &.killed,
+    &.failure {
+      background-color: @failure;
+      color: @white;
+    }
+    &.ng-enter {
+      transition: all ease 1s;
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    &.ng-enter-active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .author {
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 99px;
+      height: 94px;
+      padding: 10px 15px 10px 10px;
+
+      img {
+        transition: all ease 1s;
+        position: relative;
+        z-index: 6;
+        width: 74px;
+        height: 74px;
+        border-radius: 74px;
+        background-color: @shade;
+        box-shadow: -1px 1px 3px rgba(0, 0, 0, .3);
+      }
+
+      .no-author {
+        transition: all ease 1s;
+        position: relative;
+        z-index: 6;
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
+        background-color: @shade;
+        text-align: center;
+        line-height: 80px;
+        font-size: 40px;
+        color: @shadeDark;
+      }
+
+      .fa-circle-o-notch {
+        top: 7px;
+        left: 7px;
+        width: 80px;
+        height: 80px;
+        line-height: normal;
+        font-size: 80px;
+        color: @spinner;
+      }
+
+    }
+    &.running .author {
+      img {
+        transform: scale(.9, .9);
+        box-shadow: none;
+      }
+      .no-author {
+        transform: scale(.9, .9);
+      }
+    }
+
+    .name {
+      transition: color ease .3s;
+      max-width: 77%;
+      max-width: ~"calc( 100% - 140px )";
+      padding: 9px 0px 11px 105px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 40px;
+      font-weight: 700;
+    }
+    .message {
+
+      transition: color ease .3s;
+      margin-right: 15px;
+      margin-top: -3px;
+      padding: 3px 0px 3px 105px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 18px;
+      color: @shadeDark;
+
+      .branch {
+        position: relative;
+        top: -2px;
+        margin-right: 5px;
+        padding: 3px 5px;
+        background-color: @shadeDark;
+        border-radius: 3px;
+        font-size: 12px;
+        color: @white;
+      }
+
+    }
+    .when {
+      transition: color ease .3s;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      line-height: 14px;
+      font-size: 14px;
+      color: @shadeDark;
+    }
+    .when.ng-leave,
+    .when.ng-leave-active {
+      display: none;
+    }
+    .duration {
+      transition: color ease .3s;
+      position: absolute;
+      top: 35px;
+      right: 15px;
+      line-height: 14px;
+      font-size: 14px;
+      color: @shadeDark;
+    }
+
+    &.pending .name,
+    &.running .name,
+    &.error .name,
+    &.killed .name,
+    &.failure .name {
+      text-shadow: -1px 1px 3px rgba(0, 0, 0, .6);
+    }
+    &.pending .message,
+    &.pending .when,
+    &.pending .duration,
+    &.running .message,
+    &.running .when,
+    &.running .duration,
+    &.error .message,
+    &.error .when,
+    &.error .duration,
+    &.killed .message,
+    &.killed .when,
+    &.killed .duration,
+    &.failure .message,
+    &.failure .when,
+    &.failure .duration {
+      color: @white;
+    }
+
+  }
+
+}

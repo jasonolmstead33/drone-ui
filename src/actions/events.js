@@ -2,6 +2,7 @@ import * as FilterUtils from '../utils/filter';
 import Emmett from 'emmett';
 import Request from 'superagent';
 import {tree} from './tree';
+import _ from 'lodash';
 
 export const events = new Emmett();
 
@@ -9,11 +10,15 @@ export const STREAM_FEED = 'STREAM_FEED';
 export const OPEN_LOG_STREAM = 'OPEN_LOG_STREAM';
 export const CLOSE_LOG_STREAM = 'CLOSE_LOG_STREAM';
 export const GET_FEED = 'GET_FEED';
+export const GET_DASHBOARD_FEED = 'GET_DASHBOARD_FEED';
 export const GET_REPO = 'GET_REPO';
 export const DEL_REPO = 'DEL_REPO';
+export const DEL_DASHREPO = 'DEL_DASHREPO';
 export const PATCH_REPO = 'PATCH_REPO';
 export const POST_REPO = 'POST_REPO';
+export const POST_DASHREPO = 'POST_DASHREPO';
 export const GET_REPO_LIST = 'GET_REPO_LIST';
+export const GET_DASHREPO_LIST = 'GET_DASHREPO_LIST';
 export const SYNC_REPO_LIST = 'SYNC_REPO_LIST';
 export const GET_BUILD = 'GET_BUILD';
 export const POST_BUILD = 'POST_BUILD';
@@ -32,6 +37,7 @@ export const HIDE_TOKEN = 'HIDE_TOKEN';
 export const CLEAR_TOAST = 'CLEAR_TOAST';
 export const FOLLOW_LOGS = 'FOLLOW_LOGS';
 export const UNFOLLOW_LOGS = 'UNFOLLOW_LOGS';
+const DASHBOARD_REPOS='DASHBOARD_REPOS';
 
 let token = function() {
   var meta = document.querySelector('meta[name=csrf-token]');
@@ -51,6 +57,35 @@ events.once(GET_FEED, function() {
         return (b.started_at || b.created_at || -1) - (a.started_at || a.created_at || -1);
       });
       tree.set('feed', feed);
+    });
+});
+
+events.once(GET_DASHBOARD_FEED,function(event){
+  const {user_email, since} = event.data;
+  var emailString=user_email?'user_email='+user_email.toLowerCase():'',
+    sinceString=since?'since='+since:'',
+    queryString='?'+emailString+(emailString!=='' && sinceString!=='' ?'&'+sinceString:sinceString);
+
+  Request.get('/api/feed'+queryString)
+    .end((err, response) => {
+      if (err != null) {
+        console.error(err);
+        return;
+      }
+      let dashfeed = JSON.parse(response.text);
+      var names = JSON.parse(localStorage.getItem(DASHBOARD_REPOS))||[];
+      _.remove(dashfeed,function(repo){
+        return !_.includes(names,repo.full_name);
+      });
+      dashfeed.sort(function(a, b) {
+        return (b.started_at || b.created_at || -1) - (a.started_at || a.created_at || -1);
+      });
+
+      _.each(dashfeed,function(repo){
+        repo.author_email=repo.author_email.toLowerCase();
+      });
+
+      tree.set('dashfeed', dashfeed);
     });
 });
 
@@ -100,6 +135,27 @@ events.once(GET_REPO_LIST, function() {
         return 0;
       });
       tree.set(['user', 'repos'], repos);
+    });
+});
+
+events.once(GET_DASHREPO_LIST, function() {
+  var names = JSON.parse(localStorage.getItem(DASHBOARD_REPOS))||[];
+  Request.get('/api/user/repos?all=true')
+    .end((err, response) => {
+      if (err != null) {
+        console.error(err);
+      }
+      let repos = JSON.parse(response.text);
+      repos.sort(function(a, b) {
+        if(a.full_name < b.full_name) return -1;
+        if(a.full_name > b.full_name) return 1;
+        return 0;
+      });
+      _.forEach(repos,function(repo){
+        repo.selected=_.includes(names,repo.full_name);
+      });
+
+      tree.set(['user', 'dashrepos'], repos);
     });
 });
 
@@ -332,6 +388,38 @@ events.on(DEL_REPO, (event) => {
 
       tree.set(['pages', 'toast'], `Successfully disabled ${owner}/${name}`);
     });
+});
+
+
+events.on(DEL_DASHREPO, (event) => {
+  const {owner, name,full_name} = event.data;
+  var names = JSON.parse(localStorage.getItem(DASHBOARD_REPOS))||[];
+
+  tree.select(['user','dashrepos']).map((cursor) => {
+    var selected = cursor.get();
+    if (selected.owner == owner && selected.name == name) {
+      cursor.unset(['selected']);
+    }
+  });
+
+  _.remove(names,function(name){
+    return name===full_name;
+  });
+  localStorage.setItem(DASHBOARD_REPOS,JSON.stringify(names));
+});
+
+events.on(POST_DASHREPO, (event) => {
+  const {owner, name,full_name} = event.data;
+  var names = JSON.parse(localStorage.getItem(DASHBOARD_REPOS))||[];
+
+  tree.select(['user','dashrepos']).map((cursor) => {
+    var selected = cursor.get();
+    if (selected.owner == owner && selected.name == name) {
+      cursor.set(['selected'], true);
+    }
+  });
+  names.push(full_name);
+  localStorage.setItem(DASHBOARD_REPOS,JSON.stringify(names));
 });
 
 events.on(POST_REPO, (event) => {
