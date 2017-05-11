@@ -15,7 +15,9 @@ import  '../../../node_modules/react-vis/main.css';
 class Content extends React.Component {
   componentDidMount () {
     const {user} = this.props;
-    events.emit(GET_DASHBOARD_FEED, {user_email:user.email});
+    var d = new Date();
+    d.setDate(d.getDate()-7);
+    events.emit(GET_DASHBOARD_FEED, {user_email:user.email,since: d.getTime()/1000|0});
   }
 
   componentWillMount () {
@@ -56,7 +58,7 @@ class Content extends React.Component {
                 <div>{repo.name}</div>
                 {repo.builds.map((build) => {
                   return (
-                    <Link to={`/${build.owner}/${build.name}/${build.number}`}>
+                    <Link key={`/${build.owner}/${build.name}/${build.number}`} to={`/${build.owner}/${build.name}/${build.number}`}>
                       <BuildListItem build={build}/>
                     </Link>
                   );

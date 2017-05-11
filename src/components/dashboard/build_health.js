@@ -10,8 +10,8 @@ class BuildHealth extends React.Component {
     const {builds} = this.props;
 
     let buildStats=_(builds).groupBy('status').value();
-    let failureCount=buildStats.failure.length;
-    let successCount=buildStats.success.length;
+    let failureCount=buildStats.failure?buildStats.failure.length:0;
+    let successCount=buildStats.success?buildStats.success.length:0;
     let failureBarLength= (failureCount/ ( successCount+ failureCount) ) * 100;
     let failureStyle={
       width: 'calc( '+failureBarLength+'% - 25px )'
