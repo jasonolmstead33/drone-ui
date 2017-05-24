@@ -1,0 +1,124 @@
+@import "../../variables";
+
+.build-health {
+
+  //height: 155px;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  .no-builds {
+    display: block;
+    text-align: center;
+    line-height: 85px;
+    font-size: 31px;
+    font-weight: 300;
+  }
+  h1.bar {
+    margin-bottom: 20px;
+  }
+  .pull-count,
+  .build-count {
+    width: 15%;
+  }
+
+  & > div {
+
+    float: left;
+    text-align: center;
+
+    h2 {
+      height: 35px;
+      font-size: 24px;
+    }
+    .count {
+      line-height: 50px;
+      font-size: 42px;
+      font-weight: 700;
+    }
+
+  }
+
+  .success-fail {
+
+    float: right;
+    position: relative;
+    width: 67%;
+    padding-right: 20px;
+
+    h2:first-child {
+      float: left;
+      text-align: left;
+    }
+    h2 {
+      float: right;
+      text-align: right;
+    }
+    .build-bar {
+
+      transform: translate3d(0, 0, 0); /* Resolve Chrome rendering issue */
+      position: relative;
+      margin-top: 35px;
+      overflow: hidden;
+      border-radius: 4px;
+      width:100%;
+
+      .success {
+        width: 100%;
+        height: 50px;
+        padding-left: 10px;
+        text-align: left;
+        line-height: 50px;
+        background-color: @success;
+        font-size: 34px;
+        font-weight: 700;
+        color: @white;
+      }
+      .failure {
+        transition: width ease 1s;
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 49px;
+        max-width: 71%;
+        height: 50px;
+        padding-right: 10px;
+        text-align: right;
+        line-height: 50px;
+        background-color: @failure;
+        font-size: 34px;
+        font-weight: 700;
+        color: @white;
+      }
+      .failure span {
+        position: relative;
+        z-index: 10;
+      }
+
+      .success.zero {
+        background-color: @failure;
+      }
+      .failure.zero {
+        background-color: @success;
+      }
+      .failure.zero:before {
+        border-bottom: 50px solid @success;
+      }
+
+    }
+
+    .failure:before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 9;
+      left: -50px;
+      top: -50px;
+      width: 0;
+      height: 0;
+      border: 50px solid transparent;
+      border-bottom: 50px solid @failure;
+    }
+
+  }
+
+}

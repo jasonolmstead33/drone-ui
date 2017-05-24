@@ -1,0 +1,92 @@
+@import "../../variables";
+
+
+.build-leaders {
+  margin-bottom: 20px;
+
+  .no-builds {
+    display: block;
+    text-align: center;
+    line-height: 120px;
+    font-size: 31px;
+    font-weight: 300;
+  }
+  ol {
+
+    //height: 110px;
+    padding-top: 10px;
+    list-style-type: none;
+    width: 100%;
+    display: inline-block;
+    padding-left: 0px;
+
+    li {
+
+      float: left;
+      width: 25%;
+      height: 100%;
+
+      .container {
+        position: relative;
+        width: 130px;
+        height: 100%;
+        margin: 0px auto;
+      }
+      .developer {
+
+        float: left;
+
+        img {
+          float: left;
+          width: 100px;
+          height: 100px;
+          border-radius: 100px;
+        }
+
+      }
+      span {
+
+        display: block;
+        position: absolute;
+        transform: scale(1);
+        transition: transform ease-in-out .2s;
+        left: 80px;
+        width: 50px;
+        height: 50px;
+        background-color: @shade;
+        border-radius: 50px;
+        box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, .4);
+        line-height: 50px;
+        text-align: center;
+        font-size: 28px;
+        color: @shadeDark;
+
+        &:nth-of-type( 1 ) {
+          top: -10px;
+        }
+        &:nth-of-type( 2 ) {
+          bottom: -10px;
+        }
+        &.successes {
+          background-color: @success;
+          color: @white;
+        }
+        &.failures {
+          background-color: @failure;
+          color: @white;
+        }
+
+      }
+      &.success-pop span.successes {
+        transform: scale(1.2);
+      }
+      &.failure-pop span.failures {
+        transform: scale(1.2);
+      }
+
+    }
+
+  }
+
+}
+

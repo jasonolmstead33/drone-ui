@@ -1,14 +1,551 @@
 @import "../../variables";
 
-.dashboard {
-  .alert {
-    background: #eee;
-    padding: 50px;
-    border-radius: 2px;
-    font-size: 16px;
-    color: #757575;
+@charset "utf-8";
+
+.content{
+  padding: 0px 10px;
+}
+
+.build-column {
+  width: 37%;
+  float: left;
+}
+
+.repo-column {
+  float: left;
+  width: 63%;
+  overflow: hidden;
+
+  & > h1 {
+    margin: 25px 0px 0px 20px;
+    font-size: 31px;
+    font-weight: 300;
   }
+
+}
+
+aside.config {
+
+  position: absolute;
+  z-index: 100;
+  top: 24px;
+  right: 20px;
+  width: 32px;
+  height: 0;
+  padding-top: 32px;
+  overflow: hidden;
+  line-height: 100px;
+
   a {
-    color: #212121;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 32px;
+    color: @shadeDark;
+    cursor: pointer;
   }
+
+}
+
+.fa-circle-o-notch {
+
+  position: absolute;
+  z-index: 5;
+  text-align: center;
+
+  &.ng-animate {
+    transition: opacity ease 1s;
+  }
+  &.ng-enter {
+    opacity: 0;
+  }
+  &.ng-enter-active,
+  &.ng-leave {
+    opacity: 1;
+  }
+  &.ng-leave-active {
+    opacity: 0;
+  }
+
+}
+
+.column {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding-top: 80px;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, @bgLight 70%);
+  }
+
+}
+
+
+img.builder {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+}
+
+.last-failure h1 {
+
+  text-align: center;
+  font-weight: 300;
+  font-size: 25px;
+
+  .good {
+    font-weight: 700;
+    color: @success;
+  }
+  .bad {
+    font-weight: 700;
+    color: @failure;
+  }
+
+}
+
+h1.bar {
+
+  padding: 11px 12px;
+  margin-bottom: 20px;
+  background-color: @shadeDark;
+  border-radius: 4px;
+  font-size: 28px;
+  color: @white;
+
+  i {
+    float: right;
+    opacity: .4;
+  }
+
+}
+
+
+/* Dark theme */
+
+.dark {
+
+  background-color: @bgDark;
+
+  main > section {
+    color: @shade;
+  }
+
+  .repos > li {
+
+    background-color: @shade;
+
+    &.pending,
+    &.running {
+      background-color: @running;
+    }
+    &.success {
+      background-color: @success;
+    }
+    &.error,
+    &.killed,
+    &.failure {
+      background-color: @failure;
+    }
+
+    .author img,
+    .author .no-author {
+      background-color: @white;
+    }
+    .pull-requests > li .pull-author,
+    .pull-author img,
+    .pull-author .no-author {
+      background-color: @white;
+    }
+
+    .pull-requests > li {
+
+      &.pending .pull-author {
+        background-color: @running;
+      }
+      &.running .pull-author {
+        background-color: @running;
+      }
+      &.success .pull-author {
+        background-color: @success;
+      }
+      &.error .pull-author,
+      &.killed .pull-author,
+      &.failure .pull-author {
+        background-color: @failure;
+      }
+
+      &.more .pull-author {
+        background-color: @overflow;
+      }
+
+    }
+
+  }
+
+  .column:after {
+    background: linear-gradient(to bottom, transparent 0%, @bgDark 70%);
+  }
+  h1.bar {
+    background-color: @shadeDark;
+  }
+
+  .latest-builds ol li {
+
+    background-color: @shade;
+
+    &.pending,
+    &.running {
+      background-color: @running;
+    }
+    &.error,
+    &.killed,
+    &.failure {
+      background-color: @failure;
+    }
+
+    .author img,
+    .author .no-author {
+      background-color: @white;
+    }
+
+  }
+
+}
+
+/* Some slight responsiveness */
+
+@media ( max-width: 1760px ) {
+  .last-failure h1 {
+    font-size: 25px;
+  }
+}
+
+@media ( max-width: 1700px ) {
+  .latest-builds ol li .name {
+    padding-top: 13px;
+    font-size: 34px;
+  }
+}
+
+@media ( max-width: 1450px ) {
+  section.repo-column > h1 {
+    margin-top: 28px;
+    font-size: 25px;
+  }
+
+  .repos > li .repo-name {
+    line-height: 110px;
+    font-size: 42px;
+  }
+
+  .last-failure h1 .wide {
+    display: none;
+  }
+
+  .build-health .no-builds,
+  .build-leaders .no-builds,
+  .latest-builds .no-builds {
+    font-size: 22px;
+  }
+
+  .build-health > div .count {
+    font-size: 30px;
+  }
+
+  .build-leaders ol {
+
+    padding-top: 20px;
+
+    li {
+
+      .container {
+        width: 100px;
+        height: 85px;
+      }
+      .developer img {
+        width: 85px;
+        height: 85px;
+        border-radius: 85px;
+      }
+      span {
+        left: 65px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 18px;
+      }
+
+    }
+
+  }
+
+  .latest-builds ol li {
+
+    .name {
+      max-width: 75%;
+      max-width: ~"calc( 100% - 140px )";
+      padding-top: 18px;
+      padding-bottom: 14px;
+      font-size: 25px;
+    }
+    .message {
+
+      font-size: 15px;
+
+      .branch {
+        top: -1px;
+      }
+
+    }
+
+  }
+}
+
+@media ( max-width: 1230px ) {
+  main {
+
+    & > section.build-column {
+      display: block;
+      max-width: 800px;
+      height: auto;
+      margin: 0 auto;
+      width: auto;
+      padding: 0 20px;
+    }
+    & > section.repo-column {
+      display: none;
+    }
+
+  }
+}
+
+@media ( max-width: 650px ) {
+  main {
+    padding-bottom: 60px;
+  }
+
+  aside.config {
+
+    position: absolute;
+    z-index: 100;
+    top: auto;
+    bottom: 20px;
+    right: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 0;
+    overflow: visible;
+    line-height: 1;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      position: static;
+      left: auto;
+      top: auto;
+      width: auto;
+      height: auto;
+      font-size: 24px;
+    }
+
+  }
+}
+
+@media ( max-width: 460px ) {
+  main {
+
+    height: auto;
+
+    & > section.build-column {
+      padding: 10px 10px 0;
+    }
+
+  }
+
+  .last-failure {
+    display: none;
+  }
+
+  h1.bar {
+    padding: 8px 12px;
+    font-size: 20px;
+  }
+
+  .build-health {
+
+    height: 127px;
+
+    .no-builds {
+      line-height: 71px;
+    }
+
+    & > div {
+
+      h2 {
+        height: 25px;
+        font-size: 16px;
+      }
+      .count {
+        line-height: 40px;
+        font-size: 24px;
+      }
+
+    }
+
+    .success-fail {
+
+      padding-right: 10px;
+
+      .build-bar {
+
+        margin-top: 25px;
+
+        .success,
+        .failure {
+          height: 40px;
+          line-height: 40px;
+          font-size: 26px;
+        }
+
+        .failure::before {
+          left: -40px;
+          top: -40px;
+          border-width: 40px;
+        }
+
+      }
+
+    }
+
+  }
+
+  .build-leaders {
+
+    height: 141px;
+
+    .no-builds {
+      line-height: 85px;
+    }
+
+    ol {
+
+      padding-top: 10px;
+
+      li {
+
+        .container {
+          width: 75px;
+          height: 60px;
+        }
+        .developer img {
+          width: 60px;
+          height: 60px;
+          border-radius: 60px;
+        }
+        span {
+          left: 40px;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 16px;
+        }
+
+      }
+
+    }
+
+  }
+
+  .latest-builds {
+
+    .no-builds {
+      line-height: 60px;
+    }
+
+    ol li {
+
+      height: 66px;
+      margin-bottom: 10px;
+
+      .author {
+
+        width: 70px;
+        height: 65px;
+
+        img {
+          width: 45px;
+          height: 45px;
+          border-radius: 45px;
+        }
+
+        .fa-circle-o-notch {
+          width: 51px;
+          height: 51px;
+          line-height: normal;
+          font-size: 51px;
+        }
+
+      }
+      .running .author img {
+        transform: scale(.95, .95);
+      }
+
+      .name {
+        max-width: ~"calc( 100% - 70px )";
+        padding-top: 8px;
+        padding-bottom: 5px;
+        padding-left: 70px;
+        font-size: 18px;
+      }
+      .message {
+
+        max-height: 28px;
+        margin-right: 10px;
+        padding-bottom: 0;
+        padding-left: 70px;
+        overflow: hidden;
+        font-size: 10px;
+        white-space: normal;
+        line-height: 13px;
+
+        .branch {
+          top: 0;
+          margin-right: 2px;
+          padding: 0 3px;
+          font-size: 10px;
+        }
+
+      }
+      .when {
+        top: 4px;
+        right: 10px;
+        font-size: 8px;
+      }
+      .duration {
+        top: 15px;
+        right: 10px;
+        font-size: 8px;
+      }
+
+    }
+
+  }
+
 }

@@ -15,21 +15,39 @@ class Page extends React.Component {
   render() {
     const {pageHead, pageContent, pageToolbar, pageSidebar, user, state} = this.props;
 
-    var pageMenu;
+    var pageMenu,pageSidebarContainer;
     if (user && user != null) {
       pageMenu = (
         <div>
           <Avatar src={user.avatar_url} circle/>
           <IconButton name="more_vert" id="drone-header-menu-right"/>
           <Menu target="drone-header-menu-right" align="right">
-            <MenuItem onClick={() => {browserHistory.push('/');}}>Dashboard</MenuItem>
-            <MenuItem onClick={() => {browserHistory.push('/account');}}>Account</MenuItem>
+            <MenuItem onClick={() => {browserHistory.push('/');}}>Home</MenuItem>
+            <MenuItem onClick={() => {browserHistory.push('/dashboard');}}>Dashboard</MenuItem>
+            <MenuItem onClick={() => {browserHistory.push('/dashboard-settings');}}>Dashboard Settings</MenuItem>
+            <MenuItem onClick={() => {browserHistory.push('/account');}}>Repo Settings</MenuItem>
             <MenuItem onClick={() => {window.location.href='/logout';}}>Logout</MenuItem>
           </Menu>
         </div>
       );
     }
 
+    if(!pageSidebar)
+    {
+      return (
+        <div style={{minHeight: '100vh', position: 'relative'}}>
+          <Snackbar active={state.toast !== undefined} onTimeout={this.handleTimeout}>{state.toast}</Snackbar>
+          <Layout>
+            <Content>
+              {pageToolbar}
+              <div className="content">
+                {pageContent}
+              </div>
+            </Content>
+          </Layout>
+        </div>
+      );
+    }
     return (
       <div style={{minHeight: '100vh', position: 'relative'}}>
           <Snackbar active={state.toast !== undefined} onTimeout={this.handleTimeout}>{state.toast}</Snackbar>
