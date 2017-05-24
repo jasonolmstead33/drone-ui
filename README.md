@@ -29,8 +29,8 @@ For example:
 
 ```
 npm start -- --scheme http \
-             --host   drone.reserve.nonprod.r53.nordstrom.net \
-             --token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiYmhjOSIsInR5cGUiOiJ1c2VyIn0.uKSrjuKb3hvBZiM9HIotITgtDlFtO4HIrtYkqVkH9HU
+             --host   localhost:8080 \
+             --token  eyJhbGciOiJIUzI1NiIsInR5cCI....
 
 ```
 

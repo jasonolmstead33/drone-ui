@@ -5,7 +5,6 @@ import {Link} from 'react-router';
 import BuildListItem from '../../components/build_list_item';
 import BuildHealth from '../../components/dashboard/build_health';
 import { events, GET_DASHBOARD_FEED } from '../../actions/events';
-import StackedBarChart from '../../components/stacked_bar_chart';
 import _ from 'lodash';
 
 import './index.less';
@@ -48,22 +47,17 @@ class Content extends React.Component {
         <PageContent fluid className="dashboard">
           <BuildHealth builds={dashfeed}/>
           {repos.map((repo) => {
-            var data=_(repo.builds).groupBy('status')
-              .map(function(items,status){
-                return {x:status,y:items.length};
-              }).value();
 
             return (
-              <div>
+              <div key={`${repo.name}`}>
                 <div>{repo.name}</div>
                 {repo.builds.map((build) => {
                   return (
-                    <Link key={`/${build.owner}/${build.name}/${build.number}`} to={`/${build.owner}/${build.name}/${build.number}`}>
+                    <Link key={`user/${build.owner}/${build.name}/${build.number}`} to={`/${build.owner}/${build.name}/${build.number}`}>
                       <BuildListItem build={build}/>
                     </Link>
                   );
                 })}
-                <StackedBarChart data={data}/>
               </div>
             );
           })}

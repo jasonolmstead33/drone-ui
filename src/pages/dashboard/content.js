@@ -16,7 +16,7 @@ import  '../../../node_modules/react-vis/main.css';
 class Content extends React.Component {
   componentDidMount () {
     var d = new Date();
-    d.setDate(d.getDate()-7);
+    d.setDate(d.getDate() - d.getDay());
     events.emit(GET_DASHBOARD_FEED,{since: d.getTime()/1000|0});
   }
 
@@ -28,7 +28,7 @@ class Content extends React.Component {
     let {user, dashfeed, params} = this.props;
 
     var d = new Date();
-    d.setDate(d.getDate()-7);
+    d.setDate(d.getDate() - d.getDay());
     if (!user || !user.login) {
       return (
         <PageContent fluid className="dashboard">
@@ -55,7 +55,7 @@ class Content extends React.Component {
           </section>
           <section className="repo-column">
             <section className="last-failure">
-              <h1>Watching repos since <TimeAgo date={d} /> </h1>
+              <h1>Watching repos since {d.toDateString()} </h1>
             </section>
             <RepoStatus builds={dashfeed}/>
           </section>
